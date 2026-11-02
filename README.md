@@ -13,9 +13,21 @@ A fast, native desktop media player for Linux with a real-time equalizer, loudne
 | Integration | MPRIS over D-Bus (zbus), X11 and Wayland, `.desktop` entry, portable bundle |
 | Online sources | yt-dlp |
 
-## Origin
+## Origin: a Rust rewrite of the AFX lab
 
-LE Media Player began as a port of the AFX lab from the Logic Encoder karaoke studio — a browser-based audio-effects and visualizer workspace — into a standalone native application. The equalizer, loudness normalizer, limiter and analyser were rewritten in Rust and run in the same process as the audio engine, so effects respond with low latency and the player starts instantly. The lab became a general-purpose player while keeping effects and visualizers as its signature.
+LE Media Player is the Rust rewrite of the AFX lab from the Logic Encoder karaoke studio — the browser-based audio-effects and visualizer workspace — as a standalone desktop application with no browser engine. The audio engine, the signal chain and the visualizers were reimplemented in Rust and run in the same process: ffmpeg decodes, a native output stream plays, and the 20-band equalizer, loudness normalizer, soft limiter and spectrum analyser use the same laws as the web version, so a preset sounds the same in both. The lab started as a port and grew into a full player while keeping effects and visualizers as its signature.
+
+## Beyond the browser lab
+
+Moving the engine into a native process opened up features that a web page cannot offer, and the player adds them on top of the original lab:
+
+- **Pitch-preserving tempo** with gapless rate changes, using a WSOLA time stretcher inside the audio callback.
+- **A-B loop, bookmarks, resume position and go-to-time** for studying or practising a passage.
+- **CUE sheet support** that splits a single audio image into tracks.
+- **Audio output device selection** and **media keys with now-playing info** through the desktop's media-player interface.
+- **Multi-track audio and subtitle switching**, embedded subtitle extraction and subtitle delay.
+- **Instant response on large libraries:** the playlist draws only visible rows, media probing runs in the background with a cache, Stop silences the stream immediately, and every potentially blocking call (probing, folder scans, URL resolving) is bounded by a watchdog so the interface never freezes.
+- **Clear feedback for online sources:** a failed URL resolve reports the reason instead of waiting indefinitely.
 
 ## Sound and effects
 
