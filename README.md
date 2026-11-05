@@ -47,7 +47,7 @@ Video plays in a resizable panel with MPC-HC-style context menu and single-row o
 
 ## Online sources
 
-Any URL that yt-dlp understands can be opened directly. Video and audio streams are fetched separately and joined for playback, playlists expand into the queue, and a failed resolve reports the reason instead of hanging on a loading state.
+Any address that yt-dlp understands can be opened directly: paste a link, and the player resolves it. Video and audio streams are fetched separately and joined for playback, playlists expand into the queue so the next item plays on its own, and a failed resolve reports the reason instead of hanging on a loading state, which makes a dead or restricted link easy to recognise.
 
 ## Desktop integration
 
@@ -61,4 +61,4 @@ Private code: [le-media-player](https://github.com/logicencoder/le-media-player)
 
 ---
 
-Logic Encoder · [GitHub](https://github.com/logicencoder) · [logicencoder.com](https://logicencoder.com)
+Logic Encoder · [GitHub](https://github.com/logicencoder) · [Contact](https://logicencoder.com/contact/)
